@@ -1,5 +1,6 @@
 use exitfailure::ExitFailure;
 use maze;
+use std::io::{self, Write};
 use structopt::clap::arg_enum;
 use structopt::StructOpt;
 
@@ -130,9 +131,9 @@ fn main() -> Result<(), ExitFailure> {
     match output {
         maze::Output::ASCII(text) => println!("{}", text),
         maze::Output::BIN(bytes) => {
-            for byte in bytes {
-                print!("{:#08b} ", byte)
-            }
+            io::stdout().write_all(&bytes)?;
+            io::stdout().write(b"\r\n")?;
+            ()
         }
     }
     Ok(())
