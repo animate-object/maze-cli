@@ -6,7 +6,9 @@ use structopt::StructOpt;
 arg_enum! {
     #[derive(Debug)]
     pub enum AlgorithmArg {
-        AB, SW, BT
+        AB,
+        SW,
+        BT
     }
 }
 
@@ -56,18 +58,26 @@ impl Dir {
 
 #[derive(StructOpt, Debug)]
 struct MazeParams {
+    /// choose from the implemented maze generation algorithms -- required
     #[structopt(possible_values = &AlgorithmArg::variants(), case_insensitive = true)]
     alg: AlgorithmArg,
+    /// height of the maze to be generated, in cells
     #[structopt(short, long, default_value = "10")]
     height: usize,
+    /// width of the maze to be generated, in cells
     #[structopt(short, long, default_value = "10")]
     width: usize,
+    /// output type
+    /// * ascii produces a nice command line visual
+    /// * bin produces the maze's underlying byte encoding
     #[structopt(short,long,  possible_values = &OutputTypeArg::variants(), case_insensitive = true , default_value = "ascii" )]
     output_type: OutputTypeArg,
 
+    /// corner -- optionally specify a corner for algorithms that accept this argument, ignored otherwise
     #[structopt(long, possible_values = &Corner::variants(), case_insensitive = true)]
     corner: Option<Corner>,
 
+    /// direction -- optionally specify a direction for algorithms that accept this argument, ignored otherwise
     #[structopt(long, possible_values = &Dir::variants(), case_insensitive = true)]
     direction: Option<Dir>,
 }
