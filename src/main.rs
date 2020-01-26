@@ -58,18 +58,18 @@ impl Dir {
 
 #[derive(StructOpt, Debug)]
 struct MazeParams {
-    /// choose from the implemented maze generation algorithms -- required
+    /// maze algorithm -- choose from the implemented maze generation algorithms -- required
     #[structopt(possible_values = &AlgorithmArg::variants(), case_insensitive = true)]
     alg: AlgorithmArg,
-    /// height of the maze to be generated, in cells
+    /// height --  of the maze to be generated, in cells
     #[structopt(short, long, default_value = "10")]
     height: usize,
-    /// width of the maze to be generated, in cells
+    /// width --  of the maze to be generated, in cells
     #[structopt(short, long, default_value = "10")]
     width: usize,
-    /// output type
-    /// * ascii produces a nice command line visual
-    /// * bin produces the maze's underlying byte encoding
+    /// output type --
+    /// "ascii" produces a nice command line visual,
+    /// "bin" produces the maze's underlying byte encoding
     #[structopt(short,long,  possible_values = &OutputTypeArg::variants(), case_insensitive = true , default_value = "ascii" )]
     output_type: OutputTypeArg,
 
