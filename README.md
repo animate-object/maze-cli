@@ -4,7 +4,7 @@ CLI tool for generating rectangular grid mazes. This tool was developed primaril
 # installation
 
 ```
-$ cargo install https://github.com/animate-object/maze-clis
+$ cargo install https://github.com/animate-object/maze-cli
 ```
 
 # usage
